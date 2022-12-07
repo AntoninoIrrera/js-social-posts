@@ -83,6 +83,8 @@ let divLike;
 let divLikeButton;
 
 const arrayNomeCognome = [];
+const arrayInizialiNomi = [];
+
 
 posts.forEach(post => {
     
@@ -103,24 +105,20 @@ posts.forEach(post => {
 
         const nomeECognomeSeparato = (arrayNomeCognome[0].split(" "));
 
-        // let span;  //Da provare e capire come e se puo funzionare
 
-        // nomeECognomeSeparato.forEach(elementi => {
+        nomeECognomeSeparato.forEach(elementi => {
             
-        //     span = document.createElement("span");
 
-        //     span.append(elementi.substring(0, 1));
+            arrayInizialiNomi.push(elementi.substring(0, 1));
 
-            
-        // });
+        });
 
 
         divPost.innerHTML =
             `
         <div class="post-meta">
             <div class="post-meta__icon">
-                <span>${nomeECognomeSeparato[0].substring(0,1)} </span>
-                <span>${nomeECognomeSeparato[1].substring(0, 1)} </span>
+                <span>${arrayInizialiNomi.join(" ")}</span>
             </div>
             <div class="post-meta__data">
                 <div class="post-meta__author">${post.author.name}</div>
