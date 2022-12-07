@@ -235,7 +235,7 @@ const likePost = document.querySelectorAll("b.js-likes-counter");
 
 const arrayPostMiPiace = [];
 
-
+let prova;
 
 bottoneMiPiace.forEach((click, index) => {
     
@@ -248,15 +248,24 @@ bottoneMiPiace.forEach((click, index) => {
             likePost[index].innerHTML = posts[index].likes - 1;
             
             
-            const prova = findIndexOf(posts[index].id,arrayPostMiPiace)
+            // const prova = findIndexOf(posts[index].id,arrayPostMiPiace);
 
-            
-            arrayPostMiPiace.splice(prova, 1);
+            // arrayPostMiPiace.splice(prova, 1);
 
+            arrayPostMiPiace.forEach((like, index2) => {
                 
+                if(like == posts[index].id){
+
+                    // prova = index2;
+                    arrayPostMiPiace.splice(index2, 1);
+
+
+                }
+
+            });                
                 
-                
-            
+            // arrayPostMiPiace.splice(prova, 1);
+
             
             
             console.log(arrayPostMiPiace);
@@ -285,15 +294,15 @@ bottoneMiPiace.forEach((click, index) => {
 
 });
 
-function findIndexOf(value, array) {
-    let index;
-    for (let i = 0; i < array.length; i++) {
-        if (array[i] == value) {
-            index = i;
-        }
-    }
-    return index;
-}
+// function findIndexOf(value, array) {
+//     let index;
+//     for (let i = 0; i < array.length; i++) {
+//         if (array[i] == value) {
+//             index = i;
+//         }
+//     }
+//     return index;
+// }
 
 
 
