@@ -16,8 +16,6 @@ BONUS
 */
 
 
-
-
 const posts = [
     {
         "id": 1,
@@ -84,9 +82,10 @@ let divFooter;
 let divLike;
 let divLikeButton;
 
+const arrayNomeCognome = [];
 
 posts.forEach(post => {
-
+    
     const tempo = new Date(post.created).toLocaleDateString();
     
     divPost = document.createElement("div");
@@ -97,12 +96,31 @@ posts.forEach(post => {
     divPost.classList.add("post");
     contenitoreGenerale.append(divPost);
 
-    
-    divPost.innerHTML = 
-    `
+    if(post.author.image == null){
+
+        arrayNomeCognome.push(post.author.name);
+        
+
+        const nomeECognomeSeparato = (arrayNomeCognome[0].split(" "));
+
+        // let span;  //Da provare e capire come e se puo funzionare
+
+        // nomeECognomeSeparato.forEach(elementi => {
+            
+        //     span = document.createElement("span");
+
+        //     span.append(elementi.substring(0, 1));
+
+            
+        // });
+
+
+        divPost.innerHTML =
+            `
         <div class="post-meta">
             <div class="post-meta__icon">
-                <img class="profile-pic" src="${post.author.image}" alt="${post.author.name}">                    
+                <span>${nomeECognomeSeparato[0].substring(0,1)} </span>
+                <span>${nomeECognomeSeparato[1].substring(0, 1)} </span>
             </div>
             <div class="post-meta__data">
                 <div class="post-meta__author">${post.author.name}</div>
@@ -114,7 +132,31 @@ posts.forEach(post => {
         <div class="post__image">
             <img src="${post.media}" alt="${post.content}">
         </div>
-    `
+        `
+    }else{
+
+        divPost.innerHTML = 
+        `
+            <div class="post-meta">
+                <div class="post-meta__icon">
+                    <img class="profile-pic" src="${post.author.image}" alt="${post.author.name}">                    
+                </div>
+                <div class="post-meta__data">
+                    <div class="post-meta__author">${post.author.name}</div>
+                    <div class="post-meta__time">${tempo}</div>
+                </div>                    
+            </div>
+            </div>
+            <div class="post__text">${post.content}</div>
+            <div class="post__image">
+                <img src="${post.media}" alt="${post.content}">
+            </div>
+        `
+
+    }
+
+
+    
     
     divFooter.classList.add("post__footer");
     divLike.classList.add("likes", "js-likes");
