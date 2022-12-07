@@ -17,6 +17,7 @@ BONUS
 
 
 
+
 const posts = [
     {
         "id": 1,
@@ -85,6 +86,8 @@ let divLikeButton;
 
 
 posts.forEach(post => {
+
+    const tempo = new Date(post.created).toLocaleDateString();
     
     divPost = document.createElement("div");
     divFooter = document.createElement("div");
@@ -93,6 +96,7 @@ posts.forEach(post => {
 
     divPost.classList.add("post");
     contenitoreGenerale.append(divPost);
+
     
     divPost.innerHTML = 
     `
@@ -102,7 +106,7 @@ posts.forEach(post => {
             </div>
             <div class="post-meta__data">
                 <div class="post-meta__author">${post.author.name}</div>
-                <div class="post-meta__time">${post.created}</div>
+                <div class="post-meta__time">${tempo}</div>
             </div>                    
         </div>
         </div>
@@ -184,6 +188,7 @@ posts.forEach(post => {
 
 const bottoneMiPiace = document.querySelectorAll("div.likes__cta");
 
+let miPiaceMesso = false;
 
 const miPiaceInserito = document.querySelectorAll("a.like-button");
 
@@ -196,12 +201,14 @@ bottoneMiPiace.forEach((click, index) => {
 
     click.addEventListener("click", function() {
 
+
         miPiaceInserito[index].classList.add("like-button--liked");
     
         likePost[index].innerHTML = posts[index].likes + 1;
 
-
         arrayPostMiPiace.push(posts[index].id);
+
+        miPiaceMesso = true;
 
         // console.log(arrayPostMiPiace);
 
@@ -210,4 +217,9 @@ bottoneMiPiace.forEach((click, index) => {
 
 
 });
+
+
+
+
+
 
