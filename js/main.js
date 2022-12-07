@@ -228,7 +228,6 @@ posts.forEach(post => {
 
 const bottoneMiPiace = document.querySelectorAll("div.likes__cta");
 
-let miPiaceMesso = false;
 
 const miPiaceInserito = document.querySelectorAll("a.like-button");
 
@@ -236,29 +235,65 @@ const likePost = document.querySelectorAll("b.js-likes-counter");
 
 const arrayPostMiPiace = [];
 
+
+
 bottoneMiPiace.forEach((click, index) => {
     
 
     click.addEventListener("click", function() {
 
+        
+        if(arrayPostMiPiace.includes(posts[index].id)){
+            miPiaceInserito[index].classList.remove("like-button--liked");
+            likePost[index].innerHTML = posts[index].likes - 1;
+            
+            
+            const prova = findIndexOf(posts[index].id,arrayPostMiPiace)
 
-        miPiaceInserito[index].classList.add("like-button--liked");
+            
+            arrayPostMiPiace.splice(prova, 1);
+
+                
+                
+                
+            
+            
+            
+            console.log(arrayPostMiPiace);
+            
+            
+            
+        }else{
+            
+            miPiaceInserito[index].classList.add("like-button--liked");
+            likePost[index].innerHTML = posts[index].likes + 1;
+            arrayPostMiPiace.push(posts[index].id);
+            // arrayPostMiPiace.sort(function (a, b) { return a - b });
+            
+            console.log(arrayPostMiPiace);
+
+        }
+
+
+        
     
-        likePost[index].innerHTML = posts[index].likes + 1;
-
-        arrayPostMiPiace.push(posts[index].id);
-
-        miPiaceMesso = true;
-
-        // console.log(arrayPostMiPiace);
-
+    
+    
     })
         
 
 
 });
 
-
+function findIndexOf(value, array) {
+    let index;
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] == value) {
+            index = i;
+        }
+    }
+    return index;
+}
 
 
 
